@@ -4,35 +4,71 @@
 <meta charset=utf-8/>
 <title>Lab 1. Introduction to HTML5 and HLS</title>
   
-   <script src="js/video.js"></script>
-   <script src="js/videojs-http-streaming.js"></script>
-  <!--
-  Location for CSS if needed. Note, cascade style sheets needs to be hosted on your server, under /css folder.
-  -->
-   
-
+	
+	   <script src="js/video.js"></script>
+  	   <script src="js/videojs-http-streaming.js"></script>
+	
+	<link href="css/video-js.css" rel="stylesheet">
 
 </head>
 <body>
   <h1>My first HLS player</h1>
   
   
-	<button type="button">Play</button>
-	<button type="button">Pause</button>
-	<button type="button">Stop</button>
-	<button type="button">Jump to 5 sec forward</button>
-	<button type="button">Jump to 5 sec backwards</button>	
+	<button type="button" onclick="togglePlay()">Play</button>
+	<button type="button" onclick="togglePause()">Pause</button>
+	<button type="button" onclick="toggleStop()">Stop</button>
+	<button type="button" onclick="toggleJump5()">Jump to 5 sec forward</button>
+	<button type="button" onclick="toggleBack5()">Jump to 5 sec backwards</button>	
 	
 	
   <h2>Specify the video URL:</h2>
-	<input type="text" id="url" size="100" value=""><button type="button" id="input" onclick="change()">Load</button><br>
+	<input type="text" id="url" size="100" value=""><button type="button" id="input">Load</button><br>
 
-<video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
-    <source id="video" src="" type="application/x-mpegURL">
-  </video-js>
-  <script>
+	<video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
+    	<source id="video1" src="https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL">
+	</video-js>
+		
+	<script>
     var player = videojs('my_video_1');
-  </script>
+  	</script>
+	<span id="myspan"> hereismytext </span>
 	
+   <script>
+    var url_input = document.getElementById('input');
+    var vid = document.getElementById('video1');
+    var sp = document.getElementById('myspan');
+
+    url_input.onkeyup = function(e){
+       vid.src = url_input.value;
+       sp.src = url_input.value;
+       
+    }
+  </script>
+   <script>
+  var myPlayer = videojs("my_video_1");
+  var whereYouAt = myPlayer.currentTime()
+  
+	togglePlay = function(){
+    myPlayer.play();
+	}
+	
+	togglePause = function(){
+    myPlayer.pause();
+	}
+	
+	toggleJump5 = function(){
+	myPlayer.currentTime(myPlayer.currentTime()+5)
+	}
+	
+	toggleBack5 = function(){
+	myPlayer.currentTime(myPlayer.currentTime()-5)
+	}
+	
+	toggleStop = function(){
+	myPlayer.currentTime(0)
+	}
+  </script>
+  
 </body>
 </html>
