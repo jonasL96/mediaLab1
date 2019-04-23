@@ -1,3 +1,6 @@
+Tested on 
+Firefox on Linux
+Chromium on Linux
 # mediaLab1
 
 This lab aims to build your first HTML5 live stream (HLS) player.
